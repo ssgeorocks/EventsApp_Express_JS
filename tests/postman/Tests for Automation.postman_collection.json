@@ -1,0 +1,81 @@
+{
+  "info": {
+    "_postman_id": "e869da43-c214-4a54-ba1d-166ef8a2812e",
+    "name": "Tests for Automation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48797411",
+    "_collection_link": "https://go.postman.co/collection/48797411-e869da43-c214-4a54-ba1d-166ef8a2812e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET Posts",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\nconst schema = {\r\n    type: \"object\",\r\n    properties: {\r\n        userId: { type: \"number\" },\r\n        id: { type: \"number\" },\r\n        title: { type: \"string\" },\r\n        body: { type: \"string\" }\r\n    },\r\n    required: [\"userId\", \"id\", \"title\", \"body\"]\r\n};\r\n\r\nlet response = pm.response.json()\r\n\r\npm.test(\"Status code es 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Payload is valid\", function (){\r\n    pm.expect(response).to.have.property(\"userId\").that.is.a(\"number\")\r\n    pm.expect(response.userId).to.be.a(\"number\")\r\n})\r\n\r\npm.test(\"Schema is valid\", function () {\r\n    pm.response.to.have.jsonSchema(schema);\r\n});\r\n\r\npm.collectionVariables.set(\"userId\",response.userId)"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "\r\nconst schema = {\r\n    type: \"object\",\r\n    properties: {\r\n        id: { type: \"number\" },\r\n        username: { type: \"string\"},\r\n        email: { type: \"string\"},\r\n        address: { \r\n            type: \"object\",\r\n            properties: {\r\n                street: { type: \"string\" },\r\n                suite: { type: \"string\" },\r\n                city: { type: \"string\" },\r\n                zipcode: { type: \"string\" },\r\n                geo: {\r\n                    type: \"object\",\r\n                    properties: {\r\n                        lat: { type: \"string\" },\r\n                        lng: { type: \"string\" }\r\n                    },\r\n                    required: [\"lat\", \"lng\"]\r\n                }\r\n            },\r\n            required: [\"street\", \"suite\", \"city\", \"zipcode\", \"geo\"]\r\n        },\r\n        phone: { type: \"string\" },\r\n        website: { type: \"string\" },\r\n        company: {\r\n            type: \"object\",\r\n            properties: {\r\n                \"name\": { type: \"string\" },\r\n                \"catchPhrase\": { type: \"string\" },\r\n                \"bs\": { type: \"string\" }\r\n            },\r\n            require: [\"name\", \"catchPhrase\", \"bs\"]\r\n        },\r\n    },\r\n    required: [\"id\", \"username\", \"email\", \"address\", \"phone\", \"website\", \"company\"]\r\n};\r\n\r\nlet response = pm.response.json()\r\n\r\npm.test(\"Status code es 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Payload is valid\", function (){\r\n    pm.expect(response).to.have.property(\"name\").that.is.a(\"string\")\r\n    pm.expect(response.name).to.be.a(\"string\")\r\n})\r\n\r\npm.test(\"Schema is valid\", function () {\r\n    pm.response.to.have.jsonSchema(schema);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users/{{userId}}",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "users",
+            "{{userId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "userId",
+      "value": ""
+    }
+  ]
+}
