@@ -18,7 +18,11 @@ pipeline {
     stages{
 
         stage('Run API Tests') {
+            agent {
+                docker { image 'node:24-alpine' }
+            }
             steps {
+                sh 'npm install -g newman'
                 sh 'newman run tests/postman/Tests-for-Automation.postman_collection.json --reporters cli,junit --reporter-junit-export resultados.xml  '
             }
         }
