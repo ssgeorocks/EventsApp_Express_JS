@@ -22,8 +22,8 @@ pipeline {
                 docker { image 'node:24-alpine' }
             }
             steps {
-                sh 'npm install -g newman'
-                sh 'newman run tests/postman/Tests-for-Automation.postman_collection.json --reporters cli,junit --reporter-junit-export resultados.xml  '
+                sh 'npm install newman'
+                sh 'npx newman run tests/postman/Tests-for-Automation.postman_collection.json --reporters cli,junit --reporter-junit-export resultados.xml  '
             }
         }
 
