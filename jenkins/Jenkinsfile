@@ -17,12 +17,6 @@ pipeline {
 
     stages{
 
-        stage('Checkout') {
-            steps {
-                git branch: 'main', 'url': "https://github.com/ssgeorocks/EventsApp_Express_JS.git"
-            }
-        }
-
         stage('Run API Tests') {
             steps {
                 sh 'newman run tests/postman/Tests-for-Automation.postman_collection.json --reporters cli,junit --reporter-junit-export resultados.xml  '
