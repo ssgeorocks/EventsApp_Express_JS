@@ -1,0 +1,39 @@
+# Dependencias de Node
+node_modules/
+jspm_packages/
+web_modules/
+
+# Archivos de variables de entorno (Contienen credenciales y claves secretas de MongoDB Atlas)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Logs de error y ejecución
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Cachés de herramientas y editores
+.npm
+.eslintcache
+.stylelintcache
+.node_repl_history
+*~
+.DS_Store
+Thumbs.db
+
+# Configuraciones de editores/IDEs (Opcional, pero recomendado para mantener limpio el repo)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
