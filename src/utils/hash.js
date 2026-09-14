@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
-export const generaHash = password => bcrypt.hashSync(password, 10)
+export const generaHash = (password) => bcrypt.hashSync(password, 10);
 
-export const validaPass = (pass, hash) => bcrypt.compareSync(pass,hash) // regresa true or false
+export const validaPass = (pass, hash) => bcrypt.compareSync(pass, hash); // regresa true or false
