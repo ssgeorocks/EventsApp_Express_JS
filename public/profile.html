@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velocity Events — Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="navbar__brand">🏁 Velocity<span>Events</span></h1>
+        <div class="navbar__actions">
+            <a id="navProfileLink" href="#" class="navbar__icon" title="My profile">👤</a>
+            <button id="logoutBtn" class="btn btn--outline">Log out</button>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <section class="section">
+            <h2 class="section__title">Your Info</h2>
+            <div id="profileData" class="info-grid">Loading...</div>
+        </section>
+
+        <section class="section">
+            <h2 class="section__title">Registered Events</h2>
+            <div class="event-list">
+                <div class="event-card">
+                    <p class="event-card__title">City Sprint 10K</p>
+                    <p class="event-card__meta">Oct 4, 2026 · Downtown Circuit</p>
+                </div>
+                <div class="event-card">
+                    <p class="event-card__title">Night Karting League</p>
+                    <p class="event-card__meta">Oct 12, 2026 · Riverside Track</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section__title">Upcoming Events</h2>
+            <div class="event-list">
+                <div class="event-card">
+                    <p class="event-card__title">Trail Run Championship</p>
+                    <p class="event-card__meta">Nov 2, 2026 · North Trails</p>
+                </div>
+                <div class="event-card">
+                    <p class="event-card__title">Amateur Grand Prix</p>
+                    <p class="event-card__meta">Nov 15, 2026 · Velocity Speedway</p>
+                </div>
+                <div class="event-card">
+                    <p class="event-card__title">Winter Duathlon</p>
+                    <p class="event-card__meta">Dec 1, 2026 · Lakeside Park</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/profile.js"></script>
+</body>
+</html>

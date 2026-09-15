@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 // import MongoStore from "connect-mongo"
 import { connDB } from "./config/database.js";
 import { config } from "./config/config.js";
+import { router as pagesRouter } from "./routes/pages.Router.js";
 import { router as sessionsRouter } from "./routes/sessions.Router.js";
 import { router as testRouter } from "./routes/pruebasRouter.js";
 import passport from "passport";
@@ -17,6 +18,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/", pagesRouter);
 app.use(express.static("./public"));
 
 // PASO 2
@@ -33,13 +35,7 @@ initPassport();
 //     })
 // }))
 
-//
-app.get("/", (req, res) => {
-    res.setHeader("Content-Type", "text/plain");
-    res.status(200).send("OK");
-});
-
-// Montamos los endopints al router
+// Montamos los las rutas restantes al router
 app.use("/api/sessions", sessionsRouter);
 app.use("/api/pruebas", testRouter);
 
