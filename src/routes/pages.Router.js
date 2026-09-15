@@ -1,8 +1,8 @@
 import { Router } from "express";
 import path from "node:path";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import passport from "passport";
-import { config } from "../config/config.js"
+import { config } from "../config/config.js";
 
 export const router = Router();
 
@@ -15,13 +15,11 @@ const getAuthUser = (req) => {
 };
 
 router.get("/", (req, res) => {
-    const user = getAuthUser(req)
+    const user = getAuthUser(req);
     if (user) {
         return res.redirect(`/profile/${user.id}`);
     }
     res.redirect("/login.html");
-
-
 });
 
 router.get("/login.html", (req, res) => {
