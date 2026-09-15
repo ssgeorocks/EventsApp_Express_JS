@@ -46,9 +46,9 @@ export class SessionsController {
             // passport deja un porperty user en la req
             // con los datos del usuario
             let user = req.user;
-
+            delete user.password;
             res.setHeader("Content-Type", "application/json");
-            res.status(201).json({
+            return res.status(201).json({
                 message: "User registered succesfully",
                 user,
             });
@@ -144,11 +144,79 @@ export class SessionsController {
                 httpOnly: true,
                 maxAge: 1000 * 60 * 60,
             });
+            delete user.password;
             res.setHeader("Content-Type", "application/json");
             return res.status(200).json({
                 payload: `Login exitoso de ${req.user.firstName}`,
                 user,
             });
+        } catch (error) {
+            res.setHeader("Content-Type", "application/json");
+            return res
+                .status(500)
+                .json({ error: `Internal error: ${error.message}` });
+        }
+    }
+
+    static async getProfile(req, res) {
+        try {
+            const { id } = req.params;
+            const isOwner = req.user.id === id;
+            const isAdmin = req.user.role === "admin";
+
+            if (!isOwner && !isAdmin) {
+                res.setHeader("Content-Type", "application/json");
+                return res.status(404).json({ error: `User not found` });
+            }
+
+            const user = await userModel
+                .findById(id)
+                .select("-password")
+                .lean();
+
+            if (!user) {
+                res.setHeader("Content-Type", "application/json");
+                return res.status(404).json({ error: `User not found` });
+            }
+
+            res.setHeader("Content-Type", "application/json");
+            return res.status(200).json({ user });
+        } catch (error) {
+            res.setHeader("Content-Type", "application/json");
+            return res
+                .status(500)
+                .json({ error: `Internal error: ${error.message}` });
+        }
+    }
+
+    static async getUserData(req, res) {
+        try {
+            const user = await userModel
+                .findById(req.user.id)
+                .select("-password")
+                .lean();
+
+            res.setHeader("Content-Type", "application/json");
+            return res
+                .status(200)
+                .json({ payload: "Datos del usuario:", user });
+        } catch (error) {
+            res.setHeader("Content-Type", "application/json");
+            return res
+                .status(500)
+                .json({ error: `Internal error: ${error.message}` });
+        }
+    }
+
+    static async getAdminData(req, res) {
+        try {
+            const user = await userModel
+                .findById(req.user.id)
+                .select("-password")
+                .lean();
+
+            res.setHeader("Content-Type", "application/json");
+            return res.status(200).json({ payload: "Datos del admin:", user });
         } catch (error) {
             res.setHeader("Content-Type", "application/json");
             return res

@@ -2,8 +2,6 @@ const divMessage=document.getElementById("message")
 const inputEmail=document.getElementById("email")
 const inputPassword=document.getElementById("password")
 const btnLogin=document.getElementById("btnLogin")
-const divInfo=document.getElementById("info")
-const btnInfo=document.getElementById("btnInfo")
 
 btnLogin.addEventListener("click", async(e)=>{
     e.preventDefault()
@@ -12,7 +10,7 @@ btnLogin.addEventListener("click", async(e)=>{
     let password=inputPassword.value
 
     if (!email || !password){
-        divMessage.textContent=`Complete email y password`
+        divMessage.textContent=`Please enter email and password`
         setTimeout(() => {
             divMessage.textContent=""
         }, 3000);
@@ -29,26 +27,13 @@ btnLogin.addEventListener("click", async(e)=>{
     })
 
     if (response.status >= 400) {
-        divMessage.textContent = "Error al procesar Login"
+        divMessage.textContent = "Login failed"
         return
     }
 
     let data = await response.json()
-    divMessage.textContent = `Login existoso para ${data.user.firstName} ${data.user.lastName}`
+    divMessage.textContent = `Login successful for ${data.user.firstName} ${data.user.lastName}`
 
-})
-
-btnInfo.addEventListener("click", async(e) => {
-
-    e.preventDefault()
-
-    let response = await fetch("/api/pruebas")
-    if (response.status >= 400){
-        divMessage.textContent = "Error al recuperar datos"
-        return
-    }
-
-    let data = await response.json()
-    divInfo.textContent = JSON.stringify(data)
+    window.location.href = `/profile/${data.user._id}`
 
 })

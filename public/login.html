@@ -3,23 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Velocity Events — Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h2>Login page</h2>
-    <hr>
+    <div class="auth-page">
+        <div class="card">
+            <div class="card__flag"></div>
+            <div class="card__body">
+                <div class="brand">
+                    <h1 class="brand__title">🏁 Velocity<span>Events</span></h1>
+                    <p class="brand__subtitle">Sign in to manage your races and events</p>
+                </div>
 
-    <form action="">
-        <div id="message"></div>
-        <input type="email" id="email" name="email" placeholder="ingrese email">
-        <input type="password" name="password" id="password" placeholder="contraseña">
+                <div id="message" class="message"></div>
 
-        <input type="submit" value="Acceder" id="btnLogin">
-    </form>
+                <form action="">
+                    <input type="email" id="email" name="email" class="field" placeholder="Email">
+                    <input type="password" name="password" id="password" class="field" placeholder="Password">
+                    <input type="submit" value="Sign In" id="btnLogin" class="btn btn--primary">
+                </form>
 
-    <br>
-    <div id="info"></div>
-    <button id="btnInfo">Get Info</button>
+                <div class="links-row">
+                    <a href="/forgot-password.html">Forgot your password?</a>
+                    <a href="/register.html">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="/js/login.js"></script>
 </body>

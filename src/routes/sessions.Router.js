@@ -29,16 +29,21 @@ router.get("/error", (req, res) => {
     return res.status(401).json({ error: `Error al autenticar` });
 });
 router.get(
+    "/profile/:id",
+    passport.authenticate("current", {
+        session: false,
+        failureRedirect: "/api/sessions/error",
+    }),
+    SessionsController.getProfile,
+);
+router.get(
     "/datosuser",
     passport.authenticate("current", {
         session: false,
         failureRedirect: "/api/sessions/error",
     }),
     rolesAuth("user", "organizer", "admin"),
-    (req, res) => {
-        res.setHeader("Content-Type", "application/json");
-        return res.status(200).json({ payload: `Datos del usuario:` });
-    },
+    SessionsController.getUserData,
 );
 router.get(
     "/datosadmin",
@@ -47,10 +52,7 @@ router.get(
         failureRedirect: "/api/sessions/error",
     }),
     rolesAuth("admin"),
-    (req, res) => {
-        res.setHeader("Content-Type", "application/json");
-        return res.status(200).json({ payload: `Datos del admin:` });
-    },
+    SessionsController.getAdminData,
 );
 router.get(
     "/logingithub",
