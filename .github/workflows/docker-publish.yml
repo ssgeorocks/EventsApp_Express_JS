@@ -1,4 +1,4 @@
-name: Docker Publish
+name: CI Publish
 
 on:
     push:
@@ -8,7 +8,6 @@ on:
 
 permissions:
     contents: read
-    packages: write
 
 jobs:
     lint:
@@ -37,6 +36,9 @@ jobs:
 
     docker:
         needs: [lint, api-tests]
+        permissions:
+            contents: read
+            packages: write
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
