@@ -42,8 +42,9 @@ const userSchema = new mongoose.Schema(
         },
     },
     {
-        timestamp: true,
+        timestamps: true,
         // collection: "usuarios2026",
+        versionKey: false,
         strict: false,
     },
 );

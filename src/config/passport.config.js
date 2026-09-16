@@ -31,7 +31,7 @@ export const initPassport = () => {
             },
             async (req, username, password, done) => {
                 try {
-                    let { name: firstName, lastName } = req.body;
+                    let { firstName, lastName } = req.body;
                     let email = username.trim().toLocaleLowerCase();
                     if (!firstName || !lastName) {
                         // res.setHeader('Content-Type', 'application/json');

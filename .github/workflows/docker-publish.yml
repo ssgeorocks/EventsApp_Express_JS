@@ -31,8 +31,12 @@ jobs:
             - name: Check Prettier formatting
               run: npm run format:check
 
-    docker:
+    api-tests:
         needs: lint
+        uses: ssgeorocks/events-qa-suite/.github/workflows/api-tests.yml@main
+
+    docker:
+        needs: [lint, api-tests]
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository

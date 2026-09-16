@@ -171,7 +171,7 @@ export class SessionsController {
 
             const user = await userModel
                 .findById(id)
-                .select("-password")
+                .select("-password -__v")
                 .lean();
 
             if (!user) {
@@ -193,7 +193,7 @@ export class SessionsController {
         try {
             const user = await userModel
                 .findById(req.user.id)
-                .select("-password")
+                .select("-password -__v")
                 .lean();
 
             res.setHeader("Content-Type", "application/json");
@@ -212,7 +212,7 @@ export class SessionsController {
         try {
             const user = await userModel
                 .findById(req.user.id)
-                .select("-password")
+                .select("-password -__v")
                 .lean();
 
             res.setHeader("Content-Type", "application/json");
