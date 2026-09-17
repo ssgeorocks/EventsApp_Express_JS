@@ -19,15 +19,15 @@ const loadProfile = async () => {
     profileData.innerHTML = `
         <div class="info-grid__item">
             <span class="info-grid__label">Name</span>
-            <span class="info-grid__value">${user.firstName} ${user.lastName}</span>
+            <span class="info-grid__value" id="profileName">${user.firstName} ${user.lastName}</span>
         </div>
         <div class="info-grid__item">
             <span class="info-grid__label">Email</span>
-            <span class="info-grid__value">${user.email}</span>
+            <span class="info-grid__value" id="profileEmail">${user.email}</span>
         </div>
         <div class="info-grid__item">
             <span class="info-grid__label">Role</span>
-            <span class="info-grid__value">${user.role}</span>
+            <span class="info-grid__value" id="profileRole">${user.role}</span>
         </div>
     `
 };
