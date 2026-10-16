@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { SessionsController } from "../controller/sessionsController.js";
 import passport from "passport";
-// import { auth } from "../middleware/auth.js";
 import { rolesAuth } from "../middleware/authRoles.js";
 
 export const router = Router();
