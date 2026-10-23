@@ -1,19 +1,37 @@
 import { Router } from "express";
 import passport from "passport";
-// import { config } from "../config/config.js";
 import { rolesAuth } from "../middleware/authRoles.js";
-// import { eventOwnership } from "../middleware/eventOwnership.js";
-// import { EventsController } from "../controller/eventsController.js";
+import { EventsController } from "../controller/eventsController.js";
+import { eventOwnership } from "../middleware/eventOwnership.js";
 
 export const router = Router();
 
+const requireAuth = passport.authenticate("current", {
+    session: false,
+    failureRedirect: "/api/sessions/error",
+});
+
+router.post(
+    "/",
+    requireAuth,
+    rolesAuth("admin", "organizer"),
+    EventsController.create,
+);
+
+router.get("/", EventsController.getAll);
+
 router.put(
     "/:id",
-    passport.authenticate("current", {
-        session: false,
-        failureRedirect: "/api/sessions/error",
-    }),
+    requireAuth,
     rolesAuth("admin", "organizer"),
-    // eventOwnershio,
-    // EventsController.update
+    eventOwnership,
+    EventsController.update,
+);
+
+router.delete(
+    "/:id",
+    requireAuth,
+    rolesAuth("admin", "organizer"),
+    eventOwnership,
+    EventsController.remove,
 );

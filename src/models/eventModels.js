@@ -36,7 +36,7 @@ const eventSchema = new mongoose.Schema(
         capacity: {
             type: Number,
             required: true,
-            min: [0, "Capacity should be greater or greater than 0"],
+            min: [0, "Capacity should equal or greater than 0"],
             validate: {
                 validator: Number.isInteger,
                 message: "Capacity is an integer number",
