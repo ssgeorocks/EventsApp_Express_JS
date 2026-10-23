@@ -5,6 +5,7 @@ import { connDB } from "./config/database.js";
 import { config } from "./config/config.js";
 import { router as pagesRouter } from "./routes/pages.Router.js";
 import { router as sessionsRouter } from "./routes/sessions.Router.js";
+import { router as eventsRouter } from "./routes/events.Router.js";
 import { router as testRouter } from "./routes/pruebasRouter.js";
 import passport from "passport";
 import { initPassport } from "./config/passport.config.js";
@@ -37,6 +38,7 @@ initPassport();
 
 // Montamos los las rutas restantes al router
 app.use("/api/sessions", sessionsRouter);
+app.use("/api/events", eventsRouter);
 app.use("/api/pruebas", testRouter);
 
 const server = app.listen(PORT, () => {
